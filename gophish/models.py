@@ -49,6 +49,15 @@ class Model(object):
     def parse(cls, json):
         """Parse a JSON object into a model instance."""
         raise NotImplementedError
+    
+    def __repr__(self):
+        return _json.dumps(self.as_dict())
+    
+    def __str__(self):
+        if "name" in self._valid_properties:
+            return self.name
+        else:
+            return self.__repr__()
 
 
 class Campaign(Model):
